@@ -25,9 +25,9 @@ AI_UNAVAILABLE = "The AI assistant is taking a breath — please try again in a 
 
 
 def _key() -> str:
-    key = os.environ.get("EMERGENT_LLM_KEY", "")
+    key = os.environ.get("OPENAI_API_KEY", "")
     if not key:
-        raise HTTPException(status_code=503, detail="AI is not configured yet — add EMERGENT_LLM_KEY to backend/.env")
+        raise HTTPException(status_code=503, detail="AI is not configured yet — add OPENAI_API_KEY to the environment variables")
     return key
 
 
