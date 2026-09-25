@@ -1,0 +1,281 @@
+{
+  "project_name": "Self Insight Hub",
+  "archetype": "ARCHETYPE 1: ORGANIC & EARTHY (Warm Editorial Journal)",
+  "aesthetic_essence": "Calm tactile editorial journal with warm parchment paper tones, refined serif headings (Lora Variable), crisp readable body typography (DM Sans Variable), bespoke card surfaces with warm stone borders, deep amber/terracotta kinetic accents, and quiet, spacious writing areas.",
+  "theme_strategy": "Light paper-journal default with high-contrast warm stone dark mode. Rich tactile paper textures, subtle amber warm glow, no harsh blues or generic AI purples.",
+  "colors": {
+    "surfaces": [
+      {
+        "name": "page",
+        "kind": "solid",
+        "bg": "#FAF7F2",
+        "on_bg": "#1F1B16",
+        "on_bg_muted": "#6B6257",
+        "roles": {
+          "border": "#E8DEC8",
+          "link": "#A65B32",
+          "error": "#B42318",
+          "success": "#1B6B45",
+          "warning": "#B56D0A"
+        }
+      },
+      {
+        "name": "card_parchment",
+        "kind": "solid",
+        "bg": "#FFFFFF",
+        "on_bg": "#1F1B16",
+        "on_bg_muted": "#6B6257",
+        "roles": {
+          "border": "#E4DAC6",
+          "border_hover": "#C8B99C",
+          "link": "#A65B32",
+          "error": "#B42318",
+          "success": "#1B6B45"
+        }
+      },
+      {
+        "name": "card_warm_tint",
+        "kind": "solid",
+        "bg": "#F4EFE6",
+        "on_bg": "#1F1B16",
+        "on_bg_muted": "#5C5245",
+        "roles": {
+          "border": "#DDD2BE",
+          "link": "#8F4B24"
+        }
+      },
+      {
+        "name": "card_ai_ambient",
+        "kind": "solid",
+        "bg": "#F7F3EB",
+        "on_bg": "#1C1917",
+        "on_bg_muted": "#57534E",
+        "roles": {
+          "border": "#E2D8C3",
+          "accent_badge": "#7C3A21",
+          "link": "#9A3412"
+        }
+      },
+      {
+        "name": "inverse_dark",
+        "kind": "solid",
+        "bg": "#1C1814",
+        "on_bg": "#F7F2EA",
+        "on_bg_muted": "#B5AB9D",
+        "roles": {
+          "border": "#362F27",
+          "link": "#F2A879",
+          "error": "#F87171",
+          "success": "#34D399"
+        }
+      },
+      {
+        "name": "hero_auth_banner",
+        "kind": "image",
+        "contrast_against": "#181410",
+        "guarantee": "scrim: linear-gradient(180deg, rgba(28,24,20,0.75) 0%, rgba(28,24,20,0.92) 100%)",
+        "on_bg": "#FAF7F2",
+        "on_bg_muted": "#D8CEBE",
+        "roles": {
+          "link": "#F2A879",
+          "error": "#F87171",
+          "success": "#4ADE80"
+        }
+      },
+      {
+        "name": "glass_header",
+        "kind": "glass",
+        "contrast_against": "#F2EDE4",
+        "guarantee": "backdrop-blur-xl bg-[#FAF7F2]/85 border-b border-[#E8DEC8]/80",
+        "on_bg": "#1F1B16",
+        "on_bg_muted": "#6B6257",
+        "roles": {
+          "link": "#A65B32"
+        }
+      }
+    ],
+    "accent": "#A65B32",
+    "on_accent": "#FFFFFF",
+    "accent_secondary": "#436453",
+    "on_accent_secondary": "#FFFFFF",
+    "mood_palette": {
+      "joyful": "#D97706",
+      "calm": "#3F7C5F",
+      "reflective": "#5E6278",
+      "anxious": "#B85D43",
+      "drained": "#857262"
+    }
+  },
+  "typography": {
+    "font_family_heading": "'Lora Variable', serif",
+    "font_family_body": "'DM Sans Variable', sans-serif",
+    "font_family_mono": "'JetBrains Mono Variable', monospace",
+    "scale_px": {
+      "display": 56,
+      "h1": 44,
+      "h2": 32,
+      "h3": 22,
+      "body": 16,
+      "caption": 14
+    },
+    "scale_tailwind": {
+      "display": "text-4xl sm:text-5xl lg:text-6xl font-serif font-normal tracking-tight leading-[1.12]",
+      "h1": "text-3xl sm:text-4xl lg:text-5xl font-serif font-medium tracking-tight leading-tight",
+      "h2": "text-2xl sm:text-3xl font-serif font-medium tracking-tight leading-snug",
+      "h3": "text-xl sm:text-2xl font-serif font-medium leading-snug",
+      "h4": "text-lg font-sans font-semibold tracking-tight leading-snug",
+      "body": "text-base font-sans font-normal leading-relaxed",
+      "body_sm": "text-sm font-sans font-normal leading-relaxed",
+      "caption": "text-xs font-sans uppercase tracking-[0.16em] font-medium"
+    }
+  },
+  "entry_surfaces": {
+    "/login": "split editorial canvas — left: warm reflective journal visual + quote & core value pillars; right: clean email login/signup form with demo quick-access tabs",
+    "/": "editorial morning reflection dashboard — left: daily prompt writing desk + quick mood rater; right: streak counter, AI reflection summary & upcoming check-in timeline"
+  },
+  "page_blueprints": {
+    "Dashboard": {
+      "path": "/",
+      "title": "Daily Sanctuary & Growth Overview",
+      "sections": [
+        "Header with date in DD MMMM YYYY (India/UK format), gentle greeting, current streak counter pill & Quick Journal CTA",
+        "Hero Daily Prompt Module: 'Today's Reflection Question' with rich quote, quick write area with instant auto-save indicator, and 'Inspire with AI' prompt rotator",
+        "Quick Mood Check-in Strip: 5 organic mood stones (Joyful, Calm, Reflective, Anxious, Drained) with slider energy intensity and 1-click note save",
+        "AI Growth Whisperer Card: Emergent LLM synthesis of recent entries, detecting recurring themes, stress shifts, and personalized encouragement",
+        "Progress & Milestones Bento: Streak progress bar, streak freeze badges, values alignment score, and Weekly Check-in countdown",
+        "Recent Reflections Stream: Quick cards with mood badges, tags, AI summary snippet, and expandable reading drawer"
+      ]
+    },
+    "Journal": {
+      "path": "/journal",
+      "title": "Private Reflection Space",
+      "sections": [
+        "Editorial Header with Filter Tabs (All, Daily Prompts, Freeform, Milestones, Decisions), Search bar & 'New Entry' button",
+        "Spacious Writing Area (Drawer/Full-mode): Title input, rich textarea with paper line guide styling, word counter, mood tagger, category selector",
+        "AI Assistant Sidebar/Bar: 'Summarize Thoughts', 'Detect Stress & Clarify', 'Generate 3 Follow-up Questions' powered by Emergent LLM",
+        "Reflections Masonry/Grid: Elegant parchment cards showing date, excerpt, tags, reading time, and edit/delete actions",
+        "Offline/Static graceful fallback preview with seeded student & explorer reflections"
+      ]
+    },
+    "MoodTracker": {
+      "path": "/mood",
+      "title": "Emotional Weather & Pattern Insights",
+      "sections": [
+        "Weekly/Monthly Mood Flow Chart: Interactive Recharts spline area chart showing emotional valence over the past 14/30 days",
+        "Daily Check-in Trigger: Log today's primary emotion, energy level (1-10), and sleep/focus triggers",
+        "AI Stress Pattern Detection Module: Highlights days with high cognitive load vs restorative days and suggests tailored mindfulness micro-actions",
+        "Mood & Value Correlation Matrix: Shows which activities/values produce the deepest states of calm and fulfillment",
+        "History Log with filter by emotion"
+      ]
+    },
+    "ValuesDiscovery": {
+      "path": "/values",
+      "title": "Personal Values Compass",
+      "sections": [
+        "Interactive 20-Value Card Sorter: Drag/click card sorting into 'Essential to Me', 'Important', 'Secondary'",
+        "Ranked Core Compass: Top 5 non-negotiable personal values with user's custom definition and life examples",
+        "Values Alignment Scorecard: Weekly rating on how closely daily actions reflected core values",
+        "AI Reflection Prompt Generator based on selected top values"
+      ]
+    },
+    "DecisionTool": {
+      "path": "/decisions",
+      "title": "Clarity & Decision-Making Framework",
+      "sections": [
+        "Step-by-step Guided Framework: 1. Dilemma Framing -> 2. Options -> 3. Values Alignment -> 4. 10/10/10 Rule (10 mins, 10 months, 10 years) -> 5. Gut check",
+        "Comparison Matrix: Weighted evaluation comparing Option A vs Option B against Core Values and Energy Costs",
+        "AI Decision Mirror: Emergent LLM unbiased feedback analyzing hidden assumptions, worst-case fallbacks, and decision confidence",
+        "Decision Archive: Saved decision logs with reflection review reminders (e.g. check outcome in 30 days)"
+      ]
+    },
+    "CommunityBoard": {
+      "path": "/community",
+      "title": "Anonymous Peer Reflections & Shared Journeys",
+      "sections": [
+        "Community Header: Respectful safe-space code, filter by topics (College life, Career crossroads, Personal hurdles, Finding calm)",
+        "Anonymous Submission Sheet: Share a genuine reflection or insight without personal identity attached (anonymous pen names like 'Curious Wanderer', 'Quiet Thinker')",
+        "Reflection Card River: Warm cards with 'Resonates with me' hearts, gentle bookmarks, and supportive mentor takeaways",
+        "Community Advice & Gratitude Board: Short uplifting notes pinned to an editorial cork/parchment wall"
+      ]
+    },
+    "Auth": {
+      "path": "/login",
+      "title": "Enter Your Private Sanctuary",
+      "sections": [
+        "Split Layout: Left aesthetic banner with calming morning desk visual, quote ('Knowing yourself is the beginning of all wisdom') and 3 core pillar badges",
+        "Right Form: Clean email login / registration tabs with instant Demo Account toggle for seamless testing",
+        "Privacy & Confidentiality Guarantee Pill ('Your private thoughts remain strictly encrypted and yours alone')"
+      ]
+    }
+  },
+  "visual_enhancers": {
+    "texture": "Subtle paper noise background via SVG filter / CSS radial warmth (#FAF7F2 base with ambient stone touches)",
+    "borders": "1px crisp warm stone borders (border-[#E8DEC8]) with subtle 2px inner paper glow",
+    "shadows": "Soft diffuse paper lift: shadow-[0_4px_20px_rgba(40,30,20,0.04)] and hover:shadow-[0_10px_30px_rgba(40,30,20,0.08)]",
+    "card_radii": "rounded-2xl for main cards, rounded-xl for inner widgets, rounded-full for badges and action pills"
+  },
+  "motion": {
+    "page_transitions": "Fade and gentle slide-up (opacity: 0 -> 1, y: 12 -> 0) with 0.25s ease-out",
+    "card_hover": "Subtle lift (-translate-y-0.5) with border-color transition",
+    "button_press": "Scale-98 on active click with 0.15s ease",
+    "dialog_entrance": "Scale-95 to scale-100 with backdrop blur transition"
+  },
+  "accessibility": {
+    "apca_contrast": "All text tokens exceed 4.5:1 on their respective light paper & dark stone surfaces",
+    "reduced_motion": "All motion variants use motion-reduce:transition-none and respects system preferences",
+    "aria_labels": "All icon-only buttons (close, delete, bookmark, mood stones) have explicit aria-label and data-testid",
+    "focus_states": "Crisp ring-2 ring-[#A65B32]/40 ring-offset-2 ring-offset-[#FAF7F2] on keyboard focus"
+  },
+  "image_urls": [
+    {
+      "category": "auth_and_hero",
+      "description": "Warm morning journal desk with open notebook, coffee, and soft window light",
+      "url": "https://images.unsplash.com/photo-1761322572550-967ea8c0bfd9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwyfHxqb3VybmFsJTIwd3JpdGluZyUyMGRlc2slMjBtb3JuaW5nJTIwc3VubGlnaHR8ZW58MHx8fHwxNzkwMzU4ODUwfDA&ixlib=rb-4.1.0&q=85"
+    },
+    {
+      "category": "meditation_nature",
+      "description": "Calm scenic nature river and pine trees with gentle morning haze",
+      "url": "https://images.unsplash.com/photo-1421790500381-fc9b5996f343?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwzfHxwZWFjZWZ1bCUyMG1lZGl0YXRpb24lMjBuYXR1cmUlMjBjYWxtfGVufDB8fHx8MTc5MDM1ODg1MHww&ixlib=rb-4.1.0&q=85"
+    },
+    {
+      "category": "mindfulness_desk",
+      "description": "Clean minimalist desk with notebook, glasses, and warm wooden tones",
+      "url": "https://images.unsplash.com/photo-1619460850041-77a2b97729aa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHw0fHxtaW5kZnVsbmVzcyUyMG5vdGVib29rJTIwY29mZmVlJTIwY3VwfGVufDB8fHx8MTc5MDM1ODg1MHww&ixlib=rb-4.1.0&q=85"
+    },
+    {
+      "category": "values_and_clarity",
+      "description": "Peaceful sunset mountain reflection bench for life compass and decisions",
+      "url": "https://images.unsplash.com/photo-1522075782449-e45a34f1ddfb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwxfHxwZWFjZWZ1bCUyMG1lZGl0YXRpb24lMjBuYXR1cmUlMjBjYWxtfGVufDB8fHx8MTc5MDM1ODg1MHww&ixlib=rb-4.1.0&q=85"
+    }
+  ],
+  "component_structure": {
+    "layout": {
+      "Navbar": "frontend/src/components/layout/Navbar.tsx — Glassmorphic warm header with Logo ('Self Insight Hub' with quill/sparkle icon), nav links (Today, Journal, Mood, Values, Decisions, Community), Streak flame pill, User Profile dropdown & Theme toggle",
+      "Sidebar": "frontend/src/components/layout/Sidebar.tsx — Optional mobile responsive navigation sheet",
+      "Footer": "frontend/src/components/layout/Footer.tsx — Elegant minimal footer with daily inspirational quote and mental wellness helpline notice"
+    },
+    "features": {
+      "DailyPromptCard": "frontend/src/components/dashboard/DailyPromptCard.tsx — Core interactive prompt writing area with AI suggestion button",
+      "MoodSelector": "frontend/src/components/mood/MoodSelector.tsx — Tactile 5-stone mood logger with energy slider",
+      "AiInsightCard": "frontend/src/components/ai/AiInsightCard.tsx — Emergent LLM thought summarizer and stress pattern detector",
+      "ValuesSorter": "frontend/src/components/values/ValuesSorter.tsx — Interactive drag/click card sorter for personal compass",
+      "DecisionMatrix": "frontend/src/components/decisions/DecisionMatrix.tsx — Step-by-step decision worksheet with 10/10/10 model",
+      "CommunityCard": "frontend/src/components/community/CommunityCard.tsx — Anonymous shared reflection with resonate heart & tags"
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. THEME & FONTS: In `frontend/src/index.css`, import `@fontsource-variable/lora` and `@fontsource-variable/dm-sans`. Configure `--font-heading: 'Lora Variable', serif;` and `--font-sans: 'DM Sans Variable', sans-serif;`. Set `:root` paper palette (#FAF7F2 background, #1F1B16 text, #E8DEC8 border, #A65B32 primary terracotta accent).",
+    "2. TEST IDS: Every button, input, navigation link, mood stone, and tab MUST have clear data-testid attributes (e.g. data-testid='nav-journal-link', data-testid='daily-prompt-textarea', data-testid='save-reflection-btn', data-testid='mood-stone-joyful', data-testid='ai-summarize-btn').",
+    "3. STATIC PREVIEW SAFETY: Never let a failed API request break the whole page. If the backend is loading or unreachable, gracefully show seeded mock reflections and default stats with skeleton states rather than an error crash.",
+    "4. AUTH IMPLEMENTATION: In `backend/server.py` and routers, provide clean email login & signup endpoints setting httpOnly cookie sessions via `lib/session.ts`. Also ship a convenient 'Quick Demo Login' button so reviewers can test immediately.",
+    "5. AI FEATURES: Use Emergent LLM integration in `backend/` (`emergentintegrations` or direct LLM assistant helper) for 3 endpoints: `/api/ai/summarize`, `/api/ai/prompt-suggestions`, and `/api/ai/stress-patterns`.",
+    "6. DATE & NUMBER FORMATTING: Render dates cleanly (e.g., '24 Aug 2026') and show friendly streak counts.",
+    "7. COMPLETE CRUD: Ensure journal entries can be created, edited, deleted, and filtered by mood or category."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Never use generic AI purple or harsh neon gradients on white paper.",
+    "Maintain generous spacing: p-6 to p-8 on cards to let reflections breathe.",
+    "Ensure all interactive buttons have clear hover and active feedback.",
+    "Use Sonner for toast notifications ('Reflection saved to your sanctuary', 'Streak updated!')."
+  ]
+}

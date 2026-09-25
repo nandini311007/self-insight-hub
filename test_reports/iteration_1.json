@@ -1,0 +1,74 @@
+{
+  "iteration": 1,
+  "summary": "All 8 acceptance-matrix criteria exercised: 1 backend test + 8 browser checks, all passing. The reported profile-menu bug fix (avatar click, reload resilience, sign-out, cross-page reachability) verified with zero pageerrors and no 'MenuGroupContext' console error. Regression checks for journal CRUD, dashboard prompt/mood, values/decisions, and community heart toggle all pass. One initial community-heart check failure was diagnosed as a test-timing race (rapid clicks before UI settled) and reclassified as flaky after confirming the backend toggles correctly on every request and the fixed check (web-first waits) passes; not an app bug.",
+  "passed": 9,
+  "failed": 0,
+  "bugs": [],
+  "action_items": [],
+  "retest_needed": false,
+  "checks": [
+    {
+      "criterion": "BUG FIX (user-reported): Sign out actually signs the user out (API layer)",
+      "name": "test_tscheck_signout_logs_out",
+      "lane": "backend",
+      "status": "passed",
+      "evidence": "POST /api/auth/login -> 200; GET /api/auth/me -> {user: {...}}; POST /api/auth/logout -> 200; GET /api/auth/me (post-logout) -> {user: null}. pytest: 1 passed."
+    },
+    {
+      "criterion": "BUG FIX (user-reported): clicking the header profile avatar must not throw a runtime error",
+      "name": "profile-menu-opens-no-error",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "After demo login, user-menu-button opened dropdown showing user-menu-name and user-menu-email='demo@insighthub.app' plus signout-item. No pageerror captured; no console text containing 'MenuGroupContext'."
+    },
+    {
+      "criterion": "BUG FIX (user-reported): the profile menu still works after a page reload",
+      "name": "profile-menu-survives-reload",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Reloaded dashboard, opened/closed the menu 3x via Escape; name/email/signout-item visible each cycle; zero pageerrors, zero MenuGroupContext console errors."
+    },
+    {
+      "criterion": "BUG FIX: Sign out actually signs the user out (UI flow)",
+      "name": "signout-redirects-to-login",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Clicking signout-item triggered POST /api/auth/logout -> 200 (captured via page.waitForResponse); landed on /login with demo-login-button visible; direct navigation to /journal afterward redirected back to /login."
+    },
+    {
+      "criterion": "Profile menu is reachable and error-free from every page",
+      "name": "profile-menu-works-on-every-page",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Opened user-menu-button on /, /journal, /mood, /values, /decisions, /community; user-menu-email showed 'demo@insighthub.app' on each; zero pageerrors across all 6 pages."
+    },
+    {
+      "criterion": "Core journal flow still works after the fix (regression check)",
+      "name": "journal-crud-flow-regression",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Created tscheck-journal-entry-<ts> via new-entry-button/entry-content-textarea/save-entry-button; edited it (persisted); journal-search-input filtered to the edited text; two-step delete (arm+confirm) removed it, count went to 0."
+    },
+    {
+      "criterion": "Dashboard daily prompt and mood check-in still work (regression check)",
+      "name": "dashboard-prompt-and-mood-checkin",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Filled daily-prompt-textarea with tscheck-reflection-<ts>, clicked save-reflection-btn -> toast 'Reflection saved to your sanctuary', Entries stat moved 10->11; selected a mood stone (Anxious) and clicked save-mood-btn with no errors."
+    },
+    {
+      "criterion": "Values and decisions pages function",
+      "name": "values-and-decisions-pages-function",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Clicked 5 value cards -> numbered badges 1-5 (5 of 5 chosen), save-values-btn persisted the ranking after a full page reload. /decisions rendered the seeded 'Summer research internship or the café job?' with both options, fit/cost bars, 10/10/10 panel, and 'Chosen: Research internship'; new-decision-button opened a working multi-field form."
+    },
+    {
+      "criterion": "Community board loads and the heart toggle persists",
+      "name": "community-board-heart-toggle-persists",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "7 seeded posts listed, all with pen names (Quiet Thinker, Open Road, etc.) — no email text found. heart-button-<id> toggled 0 resonate <-> 1 resonated across 3 clicks with web-first waits between clicks, and the final state survived a page reload; check restores original un-hearted state on cleanup. (First attempt with rapid unthrottled clicks mis-raced the UI and was reclassified as a test-timing flake, not a bug, after backend curl confirmed correct alternating toggle behavior on every POST /api/community/{id}/heart call.)"
+    }
+  ]
+}
