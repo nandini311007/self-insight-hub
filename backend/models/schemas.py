@@ -25,7 +25,88 @@ class UserOut(BaseModel):
     id: str
     email: str
     name: str
+    picture: str = ""
+    has_password: bool = True
+    auth_provider: Literal["password", "google"] = "password"
+    reminder_enabled: bool = False
+    reminder_hour: int = 20
+    reminder_tz: str = "UTC"
     created_at: datetime
+
+
+class GoogleSessionIn(BaseModel):
+    session_id: str = Field(min_length=8, max_length=512)
+
+
+class ProfileUpdate(BaseModel):
+    name: str = Field(min_length=1, max_length=80)
+
+
+class EmailUpdate(BaseModel):
+    email: EmailStr
+    current_password: str = ""  # required only when the account has a password
+
+
+class PasswordUpdate(BaseModel):
+    current_password: str = ""  # required only when the account already has one
+    new_password: str = Field(min_length=6, max_length=128)
+
+
+class ReminderUpdate(BaseModel):
+    reminder_enabled: bool
+    reminder_hour: int = Field(default=20, ge=0, le=23)
+    reminder_tz: str = Field(default="UTC", max_length=64)
+
+
+# --- weekly check-in ---
+class WeeklyCheckIn(BaseModel):
+    id: str = Field(default_factory=_uuid)
+    user_id: str
+    week_start: str  # Monday, YYYY-MM-DD
+    highlight: str = ""
+    wins: str = ""
+    struggles: str = ""
+    lesson: str = ""
+    intention: str = ""
+    alignment: int = Field(default=5, ge=1, le=10)
+    energy: int = Field(default=5, ge=1, le=10)
+    created_at: datetime
+    updated_at: datetime
+
+
+class WeeklyCheckInCreate(BaseModel):
+    week_start: Optional[str] = None  # defaults to this week's Monday, server-side
+    highlight: str = Field(default="", max_length=2000)
+    wins: str = Field(default="", max_length=2000)
+    struggles: str = Field(default="", max_length=2000)
+    lesson: str = Field(default="", max_length=2000)
+    intention: str = Field(default="", max_length=2000)
+    alignment: int = Field(default=5, ge=1, le=10)
+    energy: int = Field(default=5, ge=1, le=10)
+
+
+class WeeklyCheckInWindow(BaseModel):
+    week_start: str
+    week_end: str
+    is_sunday: bool
+    completed: bool
+    today: str
+
+
+# --- growth timeline ---
+class TimelineItem(BaseModel):
+    id: str
+    kind: Literal["entry", "mood", "checkin", "decision", "values", "milestone"]
+    date: str
+    at: datetime
+    title: str
+    body: str = ""
+    meta: str = ""
+    mood: Optional[Mood] = None
+
+
+class TimelineOut(BaseModel):
+    items: list[TimelineItem]
 
 
 class SignupIn(BaseModel):

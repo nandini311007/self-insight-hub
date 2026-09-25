@@ -61,7 +61,7 @@ async def get_status_checks():
     return [StatusCheck(**status_check) for status_check in status_checks]
 
 # Feature routers — one module per resource, folded into the /api router here.
-from routers import ai, auth, community, dashboard, decisions, journal, mood, prompts, values
+from routers import ai, auth, checkins, community, cron, dashboard, decisions, journal, mood, prompts, timeline, values
 
 api_router.include_router(auth.router)
 api_router.include_router(journal.router)
@@ -72,6 +72,9 @@ api_router.include_router(community.router)
 api_router.include_router(dashboard.router)
 api_router.include_router(prompts.router)
 api_router.include_router(ai.router)
+api_router.include_router(checkins.router)
+api_router.include_router(timeline.router)
+api_router.include_router(cron.router)
 
 # Include the router in the main app
 app.include_router(api_router)

@@ -44,6 +44,9 @@ INDEXES: dict[str, list[IndexModel]] = {
         IndexModel([("created_at", DESCENDING)], name="created_desc"),
         IndexModel([("user_id", ASCENDING)], name="user"),
     ],
+    "weekly_checkins": [
+        IndexModel([("user_id", ASCENDING), ("week_start", DESCENDING)], name="user_week", unique=True),
+    ],
 }
 
 

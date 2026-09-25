@@ -1,0 +1,8 @@
+crons:
+  - name: daily-reminders
+    description: "Hourly sweep that emails reflection reminders to users whose chosen local time is now"
+    cron: "0 * * * *"
+    endpoint: "{{BASE_URL}}/api/cron/reminders"
+    method: POST
+    # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+    enabled: true

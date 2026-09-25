@@ -9,8 +9,69 @@ export interface User {
   id: string;
   email: string;
   name: string;
+  picture: string;
+  has_password: boolean;
+  auth_provider: "password" | "google";
+  reminder_enabled: boolean;
+  reminder_hour: number;
+  reminder_tz: string;
   created_at: string;
 }
+
+export interface WeeklyCheckIn {
+  id: string;
+  user_id: string;
+  week_start: string;
+  highlight: string;
+  wins: string;
+  struggles: string;
+  lesson: string;
+  intention: string;
+  alignment: number;
+  energy: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface WeeklyCheckInWindow {
+  week_start: string;
+  week_end: string;
+  is_sunday: boolean;
+  completed: boolean;
+  today: string;
+}
+
+export type TimelineKind = "entry" | "mood" | "checkin" | "decision" | "values" | "milestone";
+
+export interface TimelineItem {
+  id: string;
+  kind: TimelineKind;
+  date: string;
+  at: string;
+  title: string;
+  body: string;
+  meta: string;
+  mood: Mood | null;
+}
+
+export interface TimelineOut {
+  items: TimelineItem[];
+}
+
+export const TIMELINE_FILTERS: { value: "all" | TimelineKind; label: string }[] = [
+  { value: "all", label: "Everything" },
+  { value: "entry", label: "Entries" },
+  { value: "mood", label: "Moods" },
+  { value: "checkin", label: "Check-ins" },
+  { value: "decision", label: "Decisions" },
+  { value: "milestone", label: "Milestones" },
+  { value: "values", label: "Values" },
+];
+
+export const REMINDER_HOURS: { value: string; label: string }[] = Array.from({ length: 24 }, (_, h) => ({
+  value: String(h),
+  label: `${((h + 11) % 12) + 1}:00 ${h < 12 ? "am" : "pm"}`,
+}));
 
 export interface MeOut {
   user: User | null;

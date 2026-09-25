@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Feather, ShieldCheck, Sparkles } from "lucide-react";
+import { Chrome, Feather, ShieldCheck, Sparkles } from "lucide-react";
 import { apiPost, errorMessage } from "@/lib/api";
 import { beginSession } from "@/lib/session";
 import { useMe } from "@/lib/useMe";
@@ -187,6 +187,19 @@ export default function Login() {
           </Tabs>
 
           <div className="space-y-3">
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => {
+                // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
+                const redirectUrl = window.location.origin + "/";
+                window.location.href = `https://auth.emergentagent.com/?redirect=${encodeURIComponent(redirectUrl)}`;
+              }}
+              disabled={pending}
+              data-testid="google-signin-button"
+            >
+              <Chrome className="size-4" /> Continue with Google
+            </Button>
             <Button variant="outline" className="w-full" onClick={() => demo.mutate()} disabled={pending} data-testid="demo-login-button">
               <Sparkles className="size-4" /> {demo.isPending ? "Opening…" : "Explore with the demo account"}
             </Button>
