@@ -14,6 +14,7 @@ export async function endSession(redirectTo: string = "/login"): Promise<void> {
     await apiPost("/auth/logout");
   } finally {
     queryClient.clear();
-    window.location.assign(redirectTo);
+    window.history.pushState({}, "", redirectTo);
+    window.dispatchEvent(new PopStateEvent("popstate"));
   }
 }
