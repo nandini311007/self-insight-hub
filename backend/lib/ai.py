@@ -9,7 +9,7 @@ from google import genai
 
 logger = logging.getLogger(__name__)
 
-MODEL_NAME = "gemini-2.5-flash"
+MODEL_NAME = "gemini-2.0-flash"
 
 
 async def ask_json(
