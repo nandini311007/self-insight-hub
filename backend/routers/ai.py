@@ -25,9 +25,12 @@ AI_UNAVAILABLE = "The AI assistant is taking a breath — please try again in a 
 
 
 def _key() -> str:
-    key = os.environ.get("OPENAI_API_KEY", "")
+    key = os.environ.get("GEMINI_API_KEY", "")
     if not key:
-        raise HTTPException(status_code=503, detail="AI is not configured yet — add OPENAI_API_KEY to the environment variables")
+        raise HTTPException(
+            status_code=503,
+            detail="AI is not configured yet — add GEMINI_API_KEY to the backend environment",
+        )
     return key
 
 
