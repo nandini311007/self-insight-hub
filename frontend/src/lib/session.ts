@@ -9,12 +9,11 @@ export function beginSession(): void {
 }
 
 // Call from every sign-out control; the hard redirect resets all in-memory state.
-export async function endSession(redirectTo: string = "/login"): Promise<void> {
+export async function endSession(redirectTo: string = "/"): Promise<void> {
   try {
     await apiPost("/auth/logout");
   } finally {
     queryClient.clear();
-    window.history.pushState({}, "", redirectTo);
-    window.dispatchEvent(new PopStateEvent("popstate"));
+    window.location.assign(redirectTo);
   }
 }
