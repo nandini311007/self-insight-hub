@@ -1,14 +1,15 @@
-"""OpenAI helper — strict-JSON answers."""
+"""Gemini AI helper — strict-JSON responses."""
 
 import json
 import logging
+import os
 import re
 
-from openai import AsyncOpenAI
+from google import genai
 
 logger = logging.getLogger(__name__)
 
-MODEL_NAME = "gpt-5.4"
+MODEL_NAME = "gemini-2.5-flash"
 
 
 async def ask_json(
@@ -17,26 +18,44 @@ async def ask_json(
     user_text: str,
     session_id: str,
 ) -> dict:
-    """Generate a JSON response using OpenAI."""
+    """Generate a response and parse it as a JSON object."""
 
-    client = AsyncOpenAI(api_key=api_key)
+    client = genai.Client(api_key=api_key)
 
-    response = await client.responses.create(
+    prompt = f"""
+{system_message}
+
+IMPORTANT:
+Return ONLY a valid JSON object.
+Do not use markdown code fences.
+Do not add any explanation before or after the JSON.
+
+User input:
+{user_text}
+"""
+
+    response = await client.aio.models.generate_content(
         model=MODEL_NAME,
-        instructions=system_message,
-        input=user_text,
+        contents=prompt,
+        config={
+            "response_mime_type": "application/json",
+        },
     )
 
-    raw = response.output_text.strip()
+    raw = (response.text or "").strip()
 
-    # Tolerate markdown JSON code fences
     raw = re.sub(r"^```(?:json)?", "", raw).strip()
     raw = re.sub(r"```$", "", raw).strip()
 
-    start, end = raw.find("{"), raw.rfind("}")
+    start = raw.find("{")
+    end = raw.rfind("}")
 
     if start == -1 or end <= start:
-        logger.error("AI reply was not JSON: %.200s", raw)
+        logger.error("AI reply was not JSON: %.500s", raw)
         raise ValueError("AI reply was not valid JSON")
 
-    return json.loads(raw[start : end + 1])
+    try:
+        return json.loads(raw[start : end + 1])
+    except json.JSONDecodeError as exc:
+        logger.error("Could not parse AI JSON: %.500s", raw)
+        raise ValueError("AI reply was not valid JSON") from exc
