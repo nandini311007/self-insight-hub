@@ -13,9 +13,9 @@ from lib.timeutil import as_utc
 
 load_dotenv(Path(__file__).parent.parent / ".env")
 
-mongo_url = os.environ["MONGO_URL"]
+mongo_url = os.environ["MONGO_MONGODB_URI"]
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ["DB_NAME"]]
+db = client["self_insight_hub"]
 
 logger = logging.getLogger(__name__)
 
